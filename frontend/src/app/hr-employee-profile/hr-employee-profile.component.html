@@ -1,0 +1,47 @@
+<div class="container"><br/>
+  <h3 class="text-center mt-5 mb-5">Summary of Employee's profile</h3>
+    <div class="form-group">
+      <strong>FirstName: </strong>
+      <input type="text" [(ngModel)]="fields.firstName" (ngModelChange)="updateFilters()" />
+    </div>
+  <br />
+    <div class="form-group">
+      <strong>LastName: </strong>
+      <input type="text" [(ngModel)]="fields.lastName" (ngModelChange)="updateFilters()" />
+    </div>
+  <br />
+    <div class="form-group">
+      <strong>Email:</strong>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="text" [(ngModel)]="fields.email" (ngModelChange)="updateFilters()" />
+    </div>
+    <br />
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>SSN</th>
+      <th>Work Authorization Title</th>
+      <th>Phone Number</th>
+      <th>Email</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let emp of jsonData | tableFilter: filter | paginate: { itemsPerPage: tableSize, currentPage: page , totalItems: count };">
+      <th scope="col"><a class="link-primary"  (click)="openUserProfile(emp.id)" target="_blank">{{ emp.firstName + " " + emp.lastName }}</a></th>
+      <th>{{ emp.ssn }}</th>
+      <th>{{ emp.workAuthorizationTitle }}</th>
+      <th>{{ emp.phoneNumber }}</th>
+      <th scope="col">{{ emp.email }}</th>
+    </tr>
+    </tbody>
+  </table>
+
+  <div class="d-flex justify-content-center">
+    <pagination-controls
+      previousLabel="Prev"
+      nextLabel="Next"
+      (pageChange)="onTableDataChange($event)">
+    </pagination-controls>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+{
+  "/employee-service/*": {
+    "target": "http://localhost:9000",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/auth/**": {
+    "target": "http://localhost:9000",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/file-service/*":{
+    "target": "http://localhost:9000",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/employee-file-service/*":{
+    "target": "http://localhost:9000",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/hiring-management/*":{
+    "target": "http://localhost:9000",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/housing-service/*":{
+    "target": "http://localhost:9000",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/employeeHousing-service/*":{
+    "target": "http://localhost:9000",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/application-service/*":{
+    "target": "http://localhost:9000",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/employeeApplication-service/*":{
+    "target": "http://localhost:9000",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  }
+}

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Pending Form</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+<div class="container mt-3">
+  <div class="alert alert-primary" role="alert">
+    Your application status is: INITIAL <br>
+    Please fill in the below information to move on.
+  </div>
+  <form [formGroup]="pendingForm" (ngSubmit)="onSubmit()">
+    <div>
+      <h4>Section 1: Basic Information</h4>
+      <div class="form-group">
+        <label>First Name</label>
+        <input class="form-control" for="firstName" formControlName="firstName">
+        <p class="text-danger" *ngIf="pendingForm.get('firstName').errors?.['required']">
+          This column is required
+        </p>
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <input class="form-control" for="lastName" formControlName="lastName">
+        <p class="text-danger" *ngIf="pendingForm.get('lastName').errors?.['required']">
+          This column is required
+        </p>
+      </div>
+      <div class="form-group">
+        <label>Middle Name</label>
+        <input class="form-control" for="middleName" formControlName="middleName">
+      </div>
+      <div class="form-group">
+        <label>Preferred Name</label>
+        <input class="form-control" for="preferredName" formControlName="preferredName">
+      </div>
+    </div>
+    <hr>
+    <div>
+      <h4>Section 2: Profile photo</h4>
+      <div class="form-group">
+        <label>Please upload your photo</label>
+        <input type="file" class="form-control-file">
+        <button type="button" class="btn btn-primary">Upload</button>
+      </div>
+    </div>
+    <hr>
+    <div>
+      <h4>Section 3: Address Information</h4>
+      <div class="form-group">
+        <label>Address Line 1</label>
+        <input class="form-control" for="addressLine1" formControlName="addressLine1">
+        <p *ngIf="pendingForm.get('addressLine1').errors?.['required']" class="text-danger">
+          This column is required
+        </p>
+      </div>
+      <div class="form-group">
+        <label>Address Line 2</label>
+        <input class="form-control" for="addressLine2" formControlName="addressLine2">
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label>City</label>
+          <input class="form-control" for="city" formControlName="city">
+          <p *ngIf="pendingForm.get('city').errors?.['required']" class="text-danger">
+            This column is required
+          </p>
+        </div>
+        <div class="form-group col-md-4">
+          <label>State</label>
+          <input class="form-control" for="state" formControlName="state">
+          <p *ngIf="pendingForm.get('state').errors?.['required']" class="text-danger">
+            This column is required
+          </p>
+        </div>
+        <div class="form-group col-md-2">
+          <label>Zip Code</label>
+          <input class="form-control" for="zipCode" formControlName="zipCode">
+          <p *ngIf="pendingForm.get('zipCode').errors?.['required']" class="text-danger">
+            This column is required
+          </p>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div>
+      <h4>Section 4: Phone and email</h4>
+      <div class="form-group">
+        <label>Cell Phone</label>
+        <input class="form-control" for="cellPhone" formControlName="cellPhone">
+        <p *ngIf="pendingForm.get('cellPhone').errors?.['required']" class="text-danger">
+          This column is required
+        </p>
+      </div>
+      <div class="form-group">
+        <label>Alternate Phone</label>
+        <input class="form-control" for="alternatePhone" formControlName="alternatePhone">
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input class="form-control" for="email" formControlName="email">
+        <p *ngIf="pendingForm.get('email').errors?.['required']" class="text-danger">
+          This column is required
+        </p>
+      </div>
+    </div>
+    <hr>
+    <h4>Section 5: SSN and DOB</h4>
+    <div class="form-group">
+      <label>SSN</label>
+      <input class="form-control" for="ssn" formControlName="ssn">
+      <p *ngIf="pendingForm.get('ssn').errors?.['required']" class="text-danger">
+        This column is required
+      </p>
+    </div>
+    <div class="form-group">
+      <label>DOB</label>
+      <input type="date" class="form-control" for="dob" formControlName="dob">
+      <p class="text-danger" *ngIf="pendingForm.get('dob').errors?.['required']">
+        This column is required
+      </p>
+    </div>
+    <div class="form-group">
+      <label for="gender">Gender:</label>
+      <select class="form-control" id="gender" formControlName="gender" >
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="non-binary">Non-binary</option>
+      </select>
+    </div>
+    <hr>
+    <div>
+      <h4>Section 6: Emergency Contacts</h4>
+      <div class="form-group">
+        <label>First Name</label>
+        <input class="form-control" for="c_firstName" formControlName="c_firstName">
+        <p class="text-danger" *ngIf="pendingForm.get('c_firstName').errors?.['required']">
+          This column is required
+        </p>
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <input class="form-control" for="c_lastName" formControlName="c_lastName">
+        <p class="text-danger" *ngIf="pendingForm.get('c_lastName').errors?.['required']">
+          This column is required
+        </p>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input class="form-control" for="c_email" formControlName="c_email">
+        <p class="text-danger" *ngIf="pendingForm.get('c_email').errors?.['required']">
+          This column is required
+        </p>
+      </div>
+
+      <div class="form-group">
+        <label>Cell Phone</label>
+        <input class="form-control" for="c_cellPhone" formControlName="c_cellPhone">
+        <p class="text-danger" *ngIf="pendingForm.get('c_cellPhone').errors?.['required']">
+          This column is required
+        </p>
+      </div>
+      <div class="form-group">
+        <label>Alternate Phone</label>
+        <input class="form-control" for="c_alternatePhone" formControlName="c_alternatePhone">
+      </div>
+      <div class="form-group">
+        <label>Relationship</label>
+        <input class="form-control" for="c_relationship" formControlName="c_relationship">
+        <p class="text-danger" *ngIf="pendingForm.get('c_relationship').errors?.['required']">
+          This column is required
+        </p>
+      </div>
+    </div>
+    <div>
+      <h4>Section 7: Visa</h4>
+      <div class="form-group">
+        <label>Please upload your OPT Receipt:</label>
+        <input type="file" class="form-control-file">
+        <button type="button" class="btn btn-primary">Upload</button>
+      </div>
+    </div>
+    <hr>
+
+    <div>
+      <h4>Section 8: Driver License</h4>
+      <div class="form-group">
+        <label>Driver License number:</label>
+        <input class="form-control" for="driverLicense" formControlName="driverLicense">
+      </div>
+      <div class="form-group">
+        <label>Driver License Expiration Date</label>
+        <input class="form-control" for="driverLicenseExpiration" formControlName="driverLicenseExpiration">
+      </div>
+      <div class="form-group">
+        <label>Please upload your driver license photo:</label>
+        <input type="file" class="form-control-file">
+        <button type="button" class="btn btn-primary">Upload</button>
+      </div>
+
+    </div>
+    <hr>
+
+    <button type="submit" class="btn btn-primary" [disabled]="pendingForm.invalid">Submit</button>
+  </form>
+</div>
+</body>
+
+
+

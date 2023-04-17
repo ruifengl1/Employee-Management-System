@@ -1,0 +1,47 @@
+<div class="container mt-4" *ngFor="let address of addresses; let i = index;">
+    <div class="input-group mb-3">
+        <span class="input-group-text">Building/apt #</span>
+        <input type="text" class="form-control" [(ngModel)]="address.addressLine1" [disabled]="!isEditing">
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text">Street name</span>
+        <input type="text" class="form-control" [(ngModel)]="address.addressLine2" [disabled]="!isEditing">
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text">City</span>
+        <input type="text" class="form-control" [(ngModel)]="address.city" [disabled]="!isEditing">
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text">State</span>
+        <input type="text" class="form-control" [(ngModel)]="address.state" [disabled]="!isEditing">
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text">Zip</span>
+        <input type="text" class="form-control" [(ngModel)]="address.zipCode" [disabled]="!isEditing">
+    </div>
+    <button type="button" class="btn btn-danger" (click)="removeAddress(i)" [disabled]="!isEditing"> Remove</button>
+</div>
+<div class="container mt-4" >
+    <div class="input-group mb-3">
+        <span class="input-group-text">Building/apt #</span>
+        <input type="text" class="form-control" [(ngModel)]="newAddress.addressLine1" [disabled]="!isEditing">
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text">Street name</span>
+        <input type="text" class="form-control" [(ngModel)]="newAddress.addressLine2" [disabled]="!isEditing">
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text">City</span>
+        <input type="text" class="form-control" [(ngModel)]="newAddress.city" [disabled]="!isEditing">
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text">State</span>
+        <input type="text" class="form-control" [(ngModel)]="newAddress.state" [disabled]="!isEditing">
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text">Zip</span>
+        <input type="text" class="form-control" [(ngModel)]="newAddress.zipCode" [disabled]="!isEditing">
+    </div>
+
+    <button type="button" class="btn btn-primary" (click)="addAddress()" [disabled]="!isEditing">Add New Address</button>
+</div>

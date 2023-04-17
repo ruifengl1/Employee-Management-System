@@ -1,0 +1,119 @@
+<!-- <p>user-housing works!</p> -->
+<div class="container">
+  <div class="row">
+    <h5> Housing Detail</h5>
+    <p>Address : {{housingDetails.address}}</p>
+  </div>
+
+  <div class="row">
+    <div class="col mb-3" *ngFor="let roommate of housingDetails.roommates; let i = index">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Roommate {{i+1}}</h5>
+          <p class="card-text">Name: {{roommate.firstName}} {{roommate.lastName}}</p>
+          <p class="card-text">Phone: {{roommate.cellPhone}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <h5>Reports</h5>
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+      <div class="form-group mb-3">
+        <label for="facility">Facility</label>
+        <select class="form-select" formControlName="facility" [(ngModel)]="selectedOption"
+          (ngModelChange)="onSelectionChange()">
+          <option *ngFor="let option of facilities.body" [value]="option.facilityId">{{option.facilityType}}: {{
+            option.description }}</option>
+        </select>
+      </div>
+      <div class="form-group mb-3">
+        <label for="title">title</label>
+        <input type="text" class="form-control" id="title" formControlName="title" [(ngModel)]="reportForm.title"
+          required>
+      </div>
+      <div class="form-group mb-3">
+        <label for="description">description</label>
+        <input type="text" class="form-control" id="description" formControlName="description"
+          [(ngModel)]="reportForm.description" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+  </div>
+  <div class="row">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Title</th>
+          <th scope="col">Descripton</th>
+          <th scope="col">Author</th>
+          <th scope="col">CreateDate</th>
+          <th scope="col">Status</th>
+          <th scope="col">Detail</th>
+        </tr>
+      </thead>
+      <tbody >
+        <tr *ngFor="let report of reports">
+          <!-- <tr *ngFor="let report of reports.body"> -->
+          <td>{{ report.title }}</td>
+          <td>{{ report.description }}</td>
+          <td>{{ report.author }}</td>
+          <td>{{ report.createDate| date:'MM/dd/yyyy h:mm:ss a' }}</td>
+          <td>{{ report.status }}</td>
+          <td> <button class="btn btn-link" (click)="openPopup(report)">Show details</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- model -->
+  <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h6 class="modal-title">Facility Report Detail</h6>
+        </div>
+        <div class="modal-body">
+          <!--  -->
+          <div class="row">
+            <table class="table table-sm ">
+              <thead>
+                <tr>
+                  <th scope="col">Author</th>
+                  <th scope="col">Comment</th>
+                  <th scope="col">Createdate</th>
+                </tr>
+              </thead>
+              <tbody>
+              <tbody>
+                <tr *ngFor="let r of reportDetail.body">
+                  <td>{{ r.author }}</td>
+                  <td>{{ r.comment}}</td>
+                  <td>{{ r.createDate| date:'MM/dd/yyyy h:mm:ss a' }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="row" *ngIf="(myReport)">
+            <form [formGroup]="commentFormGroup" (ngSubmit)="leaveComment(facilityReportId)">
+              <div class="form-group input-group mb-3">
+                <input type="text" class="form-control"  id="comment" aria-label="Default"
+                  aria-describedby="inputGroup-sizing-default" value="" formControlName="comment" [(ngModel)]="commentForm.comment">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-primary" type="submit"
+                    style="border-top-left-radius: 0;border-bottom-left-radius: 0;">Leave a
+                    comment</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <!--  -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-sm btn-secondary" (click)="closePopup()">Close</button>
+          <!-- <button type="button" class="btn btn-primary">Send message</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--  -->
+</div>

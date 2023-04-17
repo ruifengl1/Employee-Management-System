@@ -1,0 +1,110 @@
+<div class="container my-5">
+  <h1>Hiring Management</h1>
+  <div class="row mt-4">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="text-center">Send Registration Token</h3>
+      </div>
+      <div class="card-body">
+        <div class="input-group mb-3">
+          <span class="input-group-text">Email</span>
+          <input type="email" class="form-control" [(ngModel)]="userEmail">
+        </div>
+        <button class="btn btn-primary" (click)="onSubmitSendEmailClick()">Generate token and send email</button>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row mt-4">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="text-center">Pending Applications</h3>
+      </div>
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>View Application</th>
+            <th>Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let application of pendingApplications; let i = index">
+            <td>{{ application.firstName }} {{ application.lastName }}</td>
+            <td>{{ application.email }}</td>
+            <td>
+              <button class="btn btn-primary" (click)="openUserProfile(application.userID)" >View Application</button>
+            </td>
+            <td>
+              <button class="btn btn-success" [disabled]="rejectComments[i]" (click)="approveApplication(application.userID)">Approve</button>
+              <button class="btn btn-danger" [disabled]="!rejectComments[i]" (click)="rejectApplication(application.userID, rejectComments[i])">Reject</button>
+              <input type="text" [(ngModel)]="rejectComments[i]" class="form-control my-3" placeholder="Enter reason for reject">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row mt-4">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="text-center">Approved Applications</h3>
+      </div>
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>View Application</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let application of approvedApplications">
+            <td>{{ application.firstName }} {{ application.lastName }}</td>
+            <td>{{ application.email }}</td>
+            <td>
+              <button class="btn btn-primary" (click)="openUserProfile(application.userID)" >View Application</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="text-center">Rejected Applications</h3>
+      </div>
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>View Application</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let application of rejectedApplications">
+            <td>{{ application.firstName }} {{ application.lastName }}</td>
+            <td>{{ application.email }}</td>
+            <td>
+              <button class="btn btn-primary" (click)="openUserProfile(application.userID)" >View Application</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>

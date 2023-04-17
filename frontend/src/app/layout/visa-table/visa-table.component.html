@@ -1,0 +1,42 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th>Visa Title</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let visa of visas; let i = index;">
+        <td>
+            <select class="form-control" [(ngModel)]="visa.visaType" [disabled]="!isEditing">
+                <option value="OPT Recepit" selected>OPT Recepit</option>
+                <option value="OPT EAD">OPT EAD</option>
+                <option value="I-983">I-983</option>
+                <option value="I-20">I-20</option>
+                <option value="OPT STEM Receipt">OPT STEM Receipt</option>
+                <option value="OPT STEM EAD">OPT STEM EAD</option>
+            </select>
+        </td>
+        <td><input type="date" [(ngModel)]="visa.startDate" [disabled]="!isEditing"></td>
+        <td><input type="date" [(ngModel)]="visa.endDate" [disabled]="!isEditing"></td>
+        <td><button type="button" class="btn btn-danger" (click)="removeVisa(i)" [disabled]="!isEditing">Remove</button></td>
+      </tr>
+      <tr>
+        <td>
+            <select class="form-control" [(ngModel)]="newVisa.visaType" [disabled]="!isEditing">
+                <option value="OPT Recepit" selected>OPT Recepit</option>
+                <option value="OPT EAD">OPT EAD</option>
+                <option value="I-983">I-983</option>
+                <option value="I-20">I-20</option>
+                <option value="OPT STEM Receipt">OPT STEM Receipt</option>
+                <option value="OPT STEM EAD">OPT STEM EAD</option>
+            </select>
+        </td>
+        <td><input type="date" [(ngModel)]="newVisa.startDate" [disabled]="!isEditing"></td>
+        <td><input type="date" [(ngModel)]="newVisa.endDate" [disabled]="!isEditing"></td>
+        <td><button type="button" class="btn btn-primary" (click)="addVisa()" [disabled]="!isEditing">Add</button></td>
+      </tr>
+    </tbody>
+ </table>

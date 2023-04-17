@@ -1,0 +1,8 @@
+<div>
+  <div [ngSwitch]="status">
+    <app-pending-form *ngSwitchCase='"INITIAL"'></app-pending-form>
+    <app-approve-form *ngSwitchCase='"PENDING"'></app-approve-form>
+    <app-approved-form *ngSwitchCase='"APPROVED"'></app-approved-form>
+    <app-rejected-form *ngSwitchCase='"REJECTED"'></app-rejected-form>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: hiring-management
+  mvc:
+    servlet:
+      path: /hiring-management
+
+server:
+  port: 50002
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka

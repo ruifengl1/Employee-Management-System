@@ -1,0 +1,56 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a class="nav-link" routerLink="/hr-housing-management">House</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Reports</li>
+    </ol>
+  </nav>
+  <!-- <a class="nav-link" routerLink="/hr-housing-management/facility-report/facility-report-detail">Detail</a> -->
+
+<div class="container-fluid">
+  <div class="row">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">ReportId</th>
+          <th scope="col">Author</th>
+          <th scope="col">Title</th>
+          <th scope="col">Description</th>
+          <th scope="col">Status</th>
+          <th scope="col">Create Date</th>
+          <th scope="col">Last Modify date</th>
+          <th scope="col">Detail</th>
+        </tr>
+      </thead>
+      <tbody >
+        <tr class="text-center" *ngFor="let report of reports| paginate: { itemsPerPage: tableSize, currentPage: page , totalItems: count };">
+          <td>{{report.facilityReportId}}</td>
+          <td>{{report.author}}</td>
+          <td>{{report.title}}</td>
+          <td>{{report.description}}</td>
+          <td>
+            <div class="input-group">
+              <select class="custom-select" id="statusSelect" #statusSelect (change)="onSelected(statusSelect.value)">
+                <option value="Open" [selected]="report.status == 'Open'">Open</option>
+                <option value="In Progress"[selected]="report.status == 'In Progress'">In Progress</option>
+                <option value="Closed"[selected]="report.status == 'Closed'">Closed</option>
+              </select>
+              <div class="input-group-append">
+                <button class="btn btn-sm btn-outline-primary" (click)="updateStatus(report.facilityReportId)">Update</button>
+              </div>
+            </div>
+          </td>
+          <td>{{report.createDate| date:'MM/dd/yyyy h:mm:ss a' }}</td>
+          <td>{{report.lastModifyDate| date:'MM/dd/yyyy h:mm:ss a' }}</td>
+          <td> <button class="btn btn-sm btn-outline-info" type="button" (click)="directToFacilityPage(report.facilityReportId)">View</button></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="d-flex justify-content-center">
+      <pagination-controls
+        previousLabel="Prev"
+        nextLabel="Next"
+        (pageChange)="onTableDataChange($event)">
+      </pagination-controls>
+    </div>
+  </div>
+</div>

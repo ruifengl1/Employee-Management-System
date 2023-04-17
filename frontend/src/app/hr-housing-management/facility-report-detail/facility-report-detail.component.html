@@ -1,0 +1,42 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a class="nav-link" routerLink="/hr-housing-management">House</a></li>
+    <li class="breadcrumb-item"><a class="nav-link" routerLink="/hr-housing-management/facility-report">Reports</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Detail</li>
+  </ol>
+</nav>
+<div class="container-fluid">
+  <div class="row">
+    <table class="text-center table table-sm">
+      <thead>
+        <tr>
+          <th scope="col">Author</th>
+          <th scope="col">Comment</th>
+          <th scope="col">Createdate</th>
+        </tr>
+      </thead>
+      <tbody>
+      <tbody >
+        <tr *ngFor="let r of reportDetail.body">
+          <td>{{ r.author }}</td>
+          <td>{{ r.comment}}</td>
+          <td>{{ r.createDate| date:'MM/dd/yyyy h:mm:ss a' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="row">
+    <form [formGroup]="commentFormGroup" (ngSubmit)="leaveComment(reportId)">
+      <div class="form-group input-group mb-3">
+        <input type="text" class="form-control" id="comment" aria-label="Default"
+          aria-describedby="inputGroup-sizing-default" value="" formControlName="comment"
+          [(ngModel)]="commentForm.comment">
+        <div class="input-group-append">
+          <button class="btn btn-outline-primary" type="submit"
+            style="border-top-left-radius: 0;border-bottom-left-radius: 0;">Leave a
+            comment</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

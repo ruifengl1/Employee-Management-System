@@ -1,0 +1,125 @@
+<div class="container my-5">
+    <h1>User Profile</h1>
+    <div class="row mt-4">
+        <div class="card">
+            <div class="card-header">
+              <h3 class="text-center">User Information</h3>
+            </div>
+            <div class="card-body">
+                <div class="col-md-3">
+                    <img src="https://via.placeholder.com/150" alt="Profile Picture" class="img-thumbnail mb-3">
+                    <div class="form-group">
+                    <label for="profilePicture">Profile Picture</label>
+                    <input type="file" class="form-control-file" id="profilePicture" (change)="this.handleFileInput($event)" [disabled]="!isEditing">
+                    <button class="btn btn-primary mt-4" (click)="uploadFile()" [disabled]="!isEditing">Upload</button>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" class="form-control" id="firstName" name="firstName" [(ngModel)]="profile.firstName"  [disabled]="!isEditing">
+                    </div>
+                    <div class="form-group">
+                    <label for="middleName">Middle Name</label>
+                    <input type="text" class="form-control" id="middleName" name="middleName" [(ngModel)]="profile.middleName"  [disabled]="!isEditing">
+                    </div>
+                    <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="profile.lastName" [disabled]="!isEditing">
+                    </div>
+                    <div class="form-group">
+                    <label for="preferredName">Preferred Name</label>
+                    <input type="text" class="form-control" id="preferredName" name="preferredName" [(ngModel)]="profile.preferredName" [disabled]="!isEditing">
+                    </div>
+                    <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" [(ngModel)]="profile.email" [disabled]="!isEditing">
+                    </div>
+                    <div class="form-group">
+                    <label for="ssn">SSN</label>
+                    <input type="text" class="form-control" id="ssn" name="ssn" [(ngModel)]="profile.ssn" [disabled]="!isEditing">
+                    </div>
+                    <div class="form-group">
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" class="form-control" id="dob" name="dob" [(ngModel)]="profile.dob" value="1990-01-01" [disabled]="!isEditing">
+                    </div>
+                    <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select class="form-control" id="gender" name="gender" [(ngModel)]="profile.gender" [disabled]="!isEditing">
+                        <option value="male" selected>Male</option>
+                        <option value="female">Female</option>
+                        <option value="non-binary">Non-binary</option>
+                    </select>
+                    </div>
+                    <button class="btn btn-primary mt-4" (click)="onEditClick()" [hidden]="isEditing">Edit</button>
+                    <button class="btn btn-secondary ml-3 mt-4" (click)="onCancelClick()" [hidden]="!isEditing">Cancel</button>
+                    <button class="btn btn-success ml-3 mt-4" (click)="onSaveClick()" [hidden]="!isEditing">Save</button>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+              <h3 class="text-center">Address Information</h3>
+            </div>
+            <div class="card-body">
+                <app-address-table [addresses]="profile.addresses" [isEditing] = "isEditing"></app-address-table>
+                <button class="btn btn-primary mt-4" (click)="onEditClick()" [hidden]="isEditing">Edit</button>
+                <button class="btn btn-secondary ml-3 mt-4" (click)="onCancelClick()" [hidden]="!isEditing">Cancel</button>
+                <button class="btn btn-success ml-3 mt-4" (click)="onSaveClick()" [hidden]="!isEditing">Save</button>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+              <h3 class="text-center">Contact Info</h3>
+            </div>
+            <div class="card-body">
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Cellphone number</span>
+                    <input type="text" class="form-control" [(ngModel)]="profile.cellPhone" [disabled]="!isEditing">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Workphone number</span>
+                    <input type="text" class="form-control" [(ngModel)]="profile.alternatePhone" [disabled]="!isEditing">
+                </div>
+                <button class="btn btn-primary" (click)="onEditClick()" [hidden]="isEditing">Edit</button>
+                <button class="btn btn-secondary ml-3" (click)="onCancelClick()" [hidden]="!isEditing">Cancel</button>
+                <button class="btn btn-success ml-3" (click)="onSaveClick()" [hidden]="!isEditing">Save</button>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+              <h3 class="text-center">Employment</h3>
+            </div>
+            <div class="card-body">
+                <app-visa-table [visas]="profile.visaStatuses" [isEditing] = "isEditing"></app-visa-table>                
+                <button class="btn btn-primary" (click)="onEditClick()" [hidden]="isEditing">Edit</button>
+                <button class="btn btn-secondary ml-3" (click)="onCancelClick()" [hidden]="!isEditing">Cancel</button>
+                <button class="btn btn-success ml-3" (click)="onSaveClick()" [hidden]="!isEditing">Save</button>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+              <h3 class="text-center">Emergency contact</h3>
+            </div>
+            <div class="card-body">
+                <app-contact-table [contacts]="profile.contacts" [isEditing] = "isEditing"></app-contact-table>
+                <button class="btn btn-primary mt-4" (click)="onEditClick()" [hidden]="isEditing">Edit</button>
+                <button class="btn btn-secondary ml-3 mt-4" (click)="onCancelClick()" [hidden]="!isEditing">Cancel</button>
+                <button class="btn btn-success ml-3 mt-4" (click)="onSaveClick()" [hidden]="!isEditing">Save</button>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+              <h3 class="text-center">Documents</h3>
+            </div>
+            <div class="card-body">
+                <ul class="list-group">
+                    <li class="list-group-item" *ngFor="let doc of profile.personalDocuments">
+                        {{ doc.title }}
+                        <a (click) = downloadFile(doc.path) download="{{ doc.title }}" class="btn btn-sm btn-primary float-right">Download</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+  </div>

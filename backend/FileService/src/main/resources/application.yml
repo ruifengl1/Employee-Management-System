@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: file-service
+  mvc:
+    servlet:
+      path: /file-service
+
+server:
+  port: 0
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+#AWS properties
+cloud:
+  aws:
+    region:
+      static: us-east-2
+    stack:
+      auto: false
+    credentials:
+      accessKey: AKIATRCG6EN6QG5ZXZEC
+      secretKey: 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
+
+application:
+  bucket:
+    name: bf-team-project
+
+logging:
+  level:
+    com:
+      amazonaws:
+        util:
+          EC2MetadataUtils: error

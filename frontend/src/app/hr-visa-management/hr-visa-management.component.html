@@ -1,0 +1,32 @@
+<div class="container"><br/>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Visa Type</th>
+      <th>Visa Status</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let emp of jsonData | paginate: { itemsPerPage: tableSize, currentPage: page , totalItems: count };">
+      <tr *ngFor="let status of emp.visaStatuses">
+        <th>{{ emp.firstName + " " + emp.lastName }}</th>
+        <th>{{ status.visaType }}</th>
+        <th>{{ status.activeFlag }}</th>
+        <td>
+          <button (click)="this.approveAction(emp.userId, status.visaType)" type="button" class="btn btn-lg btn-primary" style="margin:5px;" [disabled]="status.activeFlag != 'PENDING'">Approve</button>
+          <button (click)="this.rejectAction(emp.userId, status.visaType)" type="button" class="btn btn-secondary btn-lg" style="background-color: red; margin:5px;" [disabled]="status.activeFlag != 'PENDING'">Reject</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="d-flex justify-content-center">
+    <pagination-controls
+      previousLabel="Prev"
+      nextLabel="Next"
+      (pageChange)="onTableDataChange($event)">
+    </pagination-controls>
+  </div>
+
+</div>

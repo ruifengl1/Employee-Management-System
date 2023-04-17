@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+.content-container {
+    max-width: 600px;
+    margin: 40px auto auto;
+}
+
+@media (min-width: 768px) {
+    .content-container {
+      max-width: 600px;
+    }
+}
+
+table {
+    padding-top: 1rem;
+}
+table td, .table th {
+    max-width: 400px;
+    padding: 2rem;
+}

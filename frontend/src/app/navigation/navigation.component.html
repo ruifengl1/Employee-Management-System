@@ -1,0 +1,111 @@
+<nav class="navbar navbar-expand-md navbar-light" style="background-color: #e3f2fd">
+  <div class="container">
+    <a class="navbar-brand" href="#">HR System</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul *ngIf="!(isLogin)" class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/login">Login</a>
+        </li>
+      </ul>
+
+      <ul *ngIf="(isLogin) && (isAdmin)" class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/hr-employee-profile">Employee Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/hr-hiring-management">Hiring Management</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/hr-housing-management">Housing Management</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/hr-visa-management">Visa Status Management</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/login" (click)="onLogout()">Logout</a>
+        </li>
+      </ul>
+
+      <!--      convenient to use when developing-->
+      <!--      <ul *ngIf="(isLogin) && !(isAdmin)" class="navbar-nav">-->
+      <!--        <li class="nav-item">-->
+      <!--          <a class="nav-link" routerLink="/home">Home</a>-->
+      <!--        </li>-->
+      <!--        <li class="nav-item">-->
+      <!--          <a class="nav-link" routerLink="/user-profile">Profile</a>-->
+      <!--        </li>-->
+      <!--        <li class="nav-item">-->
+      <!--          <a class="nav-link" routerLink="/user-housing">Housing</a>-->
+      <!--        </li>-->
+      <!--        <li class="nav-item">-->
+      <!--          <a class="nav-link" routerLink="/user-visa-management">Visa Status Management</a>-->
+      <!--        </li>-->
+      <!--        <li class="nav-item">-->
+      <!--          <a class="nav-link" routerLink="/onboarding">Onboarding</a>-->
+      <!--        </li>-->
+      <!--        <li class="nav-item">-->
+      <!--          <a class="nav-link" routerLink="/login" (click)="onLogout()">Logout</a>-->
+      <!--        </li>-->
+      <!--      </ul>-->
+
+      <ul *ngIf="isLogin && !isAdmin && applicationStatus === 'INITIAL'" class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/onboarding">Onboarding</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/login" (click)="onLogout()">Logout</a>
+        </li>
+      </ul>
+
+      <ul *ngIf="isLogin && !isAdmin && applicationStatus === 'PENDING'"class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/onboarding">Onboarding</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/user-visa-management">Visa Status Management</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/login" (click)="onLogout()">Logout</a>
+        </li>
+      </ul>
+
+      <ul *ngIf="isLogin && !isAdmin && applicationStatus === 'APPROVED'" class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/onboarding">Onboarding</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/user-visa-management">Visa Status Management</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/user-profile">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/user-housing">Housing</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/login" (click)="onLogout()">Logout</a>
+        </li>
+      </ul>
+
+      <ul *ngIf="isLogin && !isAdmin && applicationStatus === 'REJECTED'" class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/onboarding">Onboarding</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/user-visa-management">Visa Status Management</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/login" (click)="onLogout()">Logout</a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</nav>

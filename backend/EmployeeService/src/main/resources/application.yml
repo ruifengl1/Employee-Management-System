@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: employee-service
+  mvc:
+    servlet:
+      path: /employee-service
+  # mongodb connection
+  data:
+    mongodb:
+      uri: mongodb+srv://hr-team-3:happyhappy@ds-project4.3jcys.mongodb.net/?retryWrites=true&w=majority
+      database: HR_project
+
+server:
+  port: 5678
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka

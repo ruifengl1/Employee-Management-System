@@ -1,0 +1,29 @@
+<div class="container">
+    <h3 class="text-center mt-5 mb-5">Visa Status Tracking Table</h3>
+<table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Visa Type</th>
+        <th>Expiration Date</th>
+        <th>Days Left</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let emp of employees?.allStatus | paginate: { itemsPerPage: tableSize, currentPage: page , totalItems: count }; let i = index">
+      <tr *ngFor="let auth of emp.workAuthorizationResponses">
+        <th scope="row">{{ emp.name }}</th>
+        <th>{{ auth.visaType }}</th>
+        <th>{{ auth.expirationDate }}</th>
+        <th>{{ auth.daysLeft }}</th>
+      </tr>
+    </tbody>
+  </table>
+  
+  <div class="d-flex justify-content-center">
+    <pagination-controls
+      previousLabel="Prev"
+      nextLabel="Next"
+      (pageChange)="onTableDataChange($event)">
+    </pagination-controls>
+  </div>
+</div>

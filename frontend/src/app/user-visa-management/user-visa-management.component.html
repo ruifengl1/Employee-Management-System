@@ -1,0 +1,38 @@
+
+<table>
+<tr *ngFor="let visa of visaDocuments; let last = last"
+    [ngSwitch]="visa.visaStatus.activeFlag">
+
+  <td class="in-line" *ngSwitchCase="'PENDING'">
+    <p><b>File: {{visa.visaStatus.visaType}}</b></p>
+    <p>Status: {{visa.visaStatus.activeFlag}}</p>
+    <p>Waiting for HR to approve your {{visa.visaStatus.visaType}}</p>
+    <p><button class="in-line btn btn-primary" (click) = downloadFile(visa.personalDocument.path)>Download</button></p>
+  </td>
+
+  <td class="in-line" *ngSwitchCase="'REJECTED'">
+    <p><b>File: {{visa.visaStatus.visaType}}</b></p>
+    <p>Status: {{visa.visaStatus.activeFlag}}</p>
+    <p>HR's Feedback: {{visa.personalDocument.comment}}</p>
+    <button class="in-line btn btn-primary" (click) = downloadFile(visa.personalDocument.path)>Download</button>
+  </td>
+
+  <td class="in-line" *ngSwitchCase="'APPROVED'">
+    <p><b>File: {{visa.visaStatus.visaType}}</b></p>
+    <p>Status: {{visa.visaStatus.activeFlag}}</p>
+    <button class="in-line btn btn-primary" (click) = downloadFile(visa.personalDocument.path)>Download</button>
+  </td>
+
+  <div class="form-group" *ngIf="last && visa.visaStatus.activeFlag === 'APPROVED'">
+    <br>
+    <label *ngIf="visaDocuments.length !== totalVisas" for="formFile" class="form-label">Please upload your {{nextFile}}</label>
+    <label *ngIf="visaDocuments.length === totalVisas" for="formFile" class="form-label">All documents have been upload</label>
+    <input (change)="this.handleFileInput($event)" class="form-control" type="file" id="formFile">
+    <button [disabled] = "visaDocuments.length === totalVisas" (click)="this.uploadFile(visa.visaStatus.visaType)" type="button" class="btn btn-primary mt-3">Upload</button>
+  </div>
+
+  <td class="in-line" *ngSwitchDefault>
+  </td>
+</table>
+
+

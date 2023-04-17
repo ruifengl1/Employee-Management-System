@@ -1,0 +1,16 @@
+<div class="d-flex justify-content-center align-items-center h-100">
+    <div class="content-container">
+        <h1 class="mb-4">Login</h1>
+        <form (ngSubmit)="onSubmit()">
+            <div class="form-group mb-3">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" name="username" [(ngModel)]="loginForm.username" value="admin" required>
+            </div>
+            <div class="form-group mb-3">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" [(ngModel)]="loginForm.password" value="123" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    </div>
+</div>

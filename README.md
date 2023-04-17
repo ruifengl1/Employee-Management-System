@@ -4,7 +4,7 @@
 ---
 - In this project, we built a web-based and enterprise-scale property resource application that connects an employee and HR for managing the new employee onboarding process.
 - The application serves as a way that employees will be able to update personal information, upload required documents for identiﬁcation and work authorization, and monitor their housing situation. Meanwhile, HR will be able to access employee information and make changes regarding the onboarding status or housing assignments.
-- This project is done by [Ruifeng Luo](https://www.linkedin.com/in/ruifeng-luo/), [Yu-Ming Huang](), [Yu Chen]() and [Yun-Chen Yen]().
+- This project is done by [Ruifeng Luo](https://www.linkedin.com/in/ruifeng-luo/), [Yu-Ming Huang](https://www.linkedin.com/in/yu-ming-huang-3a9bb5183/), [Yu Chen](https://www.linkedin.com/in/yu-jennifer-chen/) and [Yun-Chen Yen](https://www.linkedin.com/in/yunchenyen/).
 
 ### **Requirements**
 ---
